@@ -1,0 +1,43 @@
+<div CLASS="container" style="margin-top: 130px;">
+    <div class="row">
+                <div class="col-md-8 col-sm-8   text-center" >
+                        <div class="jumbotron shadow" style="background-color:#1abc9c;">
+                            <img class="img-responsive img-thumbnail" ng-src="{{event.image}}">
+
+                            <div >
+                                <h5>Descripción:</h5>
+                                <p class="white" style="word-wrap: break-word;">
+                                {{event.description}}
+                                </p>
+                            </div>
+                            <h5>Provincia:</h5>
+                                <p class="white">{{province}}</p>
+
+                            <h5>Lugar:</h5>
+                                <p class="white">{{event.place}}</p>
+                            <h5>Hora:</h5>
+                            <p class="white"> {{hour | date: 'HH:mm'}}</p>     
+                    </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 text-center shadow" style="padding: 20px" >
+                            <div >
+                                <h5>PLAZAS</h5>
+                                <p style="word-wrap: break-word;">
+                                    <uib-progressbar class="progress-striped active" max="event.capacity" value="persons" type="warning" ><span style="color: black; white-space:nowrap;"> {{persons}} / {{event.capacity}}</span></uib-progressba>      
+                                </p>
+                            </div>
+                            <div ng-if="unlinkedUser" >
+                                <button type="submit" ng-click="joinEvent()" class="btn btn-default">UNIRSE A EVENTO</button>
+                             </div>
+
+                             <div ng-if="!unlinkedUser && !adminEvent">
+                                    <h3>YA ESTAS UNIDO A ESTE EVENTO</h3>
+                             </div>
+                             <div ng-if="adminEvent">
+                                    <h3>ERES EL CREADOR DE ESTE EVENTO</h3>
+                             </div>
+            </div>
+
+    </div>
+</div>

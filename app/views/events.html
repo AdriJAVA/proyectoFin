@@ -1,0 +1,19 @@
+
+<div style="margin-top: 130px;">
+    <h1 style="text-align: center">EVENTOS EN {{province | uppercase}}</h1>
+    <div class="container"> 
+                <div class="cards">
+                    <div class="card" style="text-align: center;" href="#" ng-repeat="event in events" ng-click="click(event)">
+                        <span class="card-header" style="background-image: url({{event.image}});" >
+                            <span class="card-title">
+                                <h4 style="margin-left: 5px;">{{event.name}}</h3>
+                            </span>
+                        </span>
+                        <span class="card-summary" style=" margin-top: 10px; color: black;">
+                            <h6>{{event.date | date: 'dd-MM-yyyy'}}</h6>
+                        </span>
+		                </div>
+                </div>
+            </div>  
+        </div>
+</div>

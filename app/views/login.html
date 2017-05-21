@@ -1,0 +1,39 @@
+<style>
+  body{
+    background-color: white;
+  }
+</style>
+<div class="container">
+  <div class="row" style="margin-top: 50px">
+    <h1 class="text-center" >TechEvents</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="jumbotron login">
+            <form role="form">
+              <p class="form-group">
+                <label for="loginEmail">E-mail</label>
+                <input id="loginEmail" required name="email" type="email" ng-model="email" class="form-control" />
+              </p>
+              <p class="form-group">
+                <label for="loginPass">Password</label>
+                <input id="loginPass" required name="pass" type="password" ng-model="pass" class="form-control" />
+              </p>
+              <p class="form-group" ng-cloak ng-show="createMode">
+                <label for="loginConfirm">Confirm password</label>
+                <input id="loginConfirm" required name="confirm" type="password" ng-model="confirm" class="form-control" />
+              </p>
+
+              <p>
+                <button  class="btn" style="background-color: #1abc9c; border: 0;" ng-click="login(email, pass)" ng-hide="createMode"  ng-disabled="form.$invalid">Log In</button>
+                <button  class="btn btn-default" ng-click="createMode = true" ng-hide="createMode">Register</button>
+                <button  class="btn" ng-cloak ng-show="createMode" style="background-color: #1abc9c; border: 0;"
+                        ng-click="createAccount(email, pass, confirm)">Create Account</button>
+                <button  class="btn btn-default" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
+              </p>
+            </form>
+            <p ng-show="err" class="bg-danger">{{err}}</p>
+            </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="lib/ng-image-input-with-preview.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="lib/raphael-min.js"></script>
+      <script type="text/javascript" src="lib/spain-map.js"></script>
+      <link rel="stylesheet" href="styles/main.css">
+
+    <!-- endbuild -->
+  </head>
+  <body ng-app="webApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div ng-if="showNav" ng-include src="'views/navbar.html'"></div>
+
+    <div ng-view>
+
+
+    </div>
+
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <!-- endbower -->
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="lib/ng-image-input-with-preview.min.js"></script>
+
+
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/configFirebase.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/home.js"></script>
+        <script src="scripts\controllers\login.js"></script>
+        <script src="scripts\controllers/account.js"></script>
+        <script src="scripts/directives/ngShowAuth.js"></script>
+        <script src="scripts/directives/ngHideAuth.js"></script>
+        <script src="scripts\routes.js"></script>
+        <script src="scripts/directives/map.js"></script>
+        <script src="scripts/services/auth.js"></script>
+        <script src="scripts/services/ref.js"></script>
+        <script src="scripts/controllers/events.js"></script>
+        <script src="scripts/services/eventsSrv.js"></script>
+        <script src="scripts/controllers/me.js"></script>
+        <script src="scripts/services/provincesSrv.js"></script>
+        <script src="scripts/directives/ngfile.js"></script>
+        <script src="scripts/services/imageSsrv.js"></script>
+        <script src="scripts/directives/ngfileselect.js"></script>
+        <script src="scripts/services/firebaseuser.js"></script>
+        <script src="scripts/services/userSrv.js"></script>
+        <script src="scripts/controllers/modals/eventCreated.js"></script>
+        <script src="scripts/controllers/modals/modalInfoProvince.js"></script>
+        <script src="scripts/controllers/event.js"></script>
+        <script src="scripts/controllers/navbar.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
