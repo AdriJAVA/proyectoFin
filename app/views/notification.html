@@ -1,0 +1,6 @@
+<div ng-controller="NotificationCtrl">
+  <div uib-alert ng-repeat="alert in alerts" style="position: fixed; bottom: 0; right: 0; z-index: 1;" ng-class="'alert-success'" close="closeAlert($index) " >
+    Evento nuevo: {{alert.name}}
+     Pulsa <a ng-href="/#!/app/event/{{alert.id}}"  class="danger">aquí</a>
+    </div>
+</div>

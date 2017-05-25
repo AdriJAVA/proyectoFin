@@ -64,6 +64,8 @@ angular.module('webApp')
       })
     });
 
+
+
     var openModal = function(){
             var modalInstance = $uibModal.open({
                 template: '<div class="modal-content"><div class="modal-body"><h3 class="modal-title text-center">¡TE HAS UNIDO!</h3><div style="text-align: center"><img src="../images/tick.png"></div></div></div>',
