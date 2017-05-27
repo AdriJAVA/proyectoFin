@@ -9,7 +9,7 @@
  */
 angular.module('webApp')
   .factory('userSrv', ['Ref','$firebaseArray','$q',function (Ref,$firebaseArray,$q) {
-
+    var users = $firebaseArray(Ref.child("users"));
     var addEventCreated = function(idUser,idEvent){
       return Ref.child("users").child(idUser).child("eventsCreated").update({[idEvent] : true})
     };
@@ -53,14 +53,31 @@ angular.module('webApp')
             }
         });
 
-        return promise
+        return promise;
     }
+
+    var getEvents= function(uid){
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+
+      users.$loaded().then(function(){
+           deferred.resolve(users.$getRecord(uid))
+      }).catch(function(error) {
+          deferred.reject(error);
+        });
+
+        return promise;
+    }
+
+
+
     
     return{
       addEventCreated: addEventCreated,
       addEvent: addEvent,
       checkEvent: checkEvent,
-      checkEventCreated: checkEventCreated
+      checkEventCreated: checkEventCreated,
+      getEvents:getEvents
     }
 
 

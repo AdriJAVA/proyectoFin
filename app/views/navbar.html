@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">TechEvents</a>
+      <a class="navbar-brand" href="/#!/app/home">TechEvents</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -15,8 +15,13 @@
         <li><a href="" class="dropdown-toggle" data-toggle="dropdown">ME</a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="/#!/app/me/create">CREA UN EVENTO</a></li>
-                <li><a href="#">MIS EVENTOS</a></li>
-            </ul>
+                <li class="dropdown-submenu"><a href=""  data-toggle="dropdown">MIS EVENTOS</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                      <li><a href="/#!/app/me/events/admin">CREADOS</a></li>
+                      <li><a href="/#!/app/me/events/attend">ASISTENTE</a></li>
+                    </ul>
+                </li>
+          </ul>
         </li>
         <li><a href="/#!/app/events/all">EVENTOS</a></li>  
         <li><a href="/#!/app/account">CUENTA</a></li>

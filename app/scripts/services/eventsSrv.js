@@ -8,7 +8,7 @@
  * Service in the webApp.
  */
 angular.module('webApp')
-  .factory('eventsSrv', ['Ref','$firebaseArray','$q',function (Ref,$firebaseArray,$q) {
+  .factory('eventsSrv', ['Ref','$firebaseArray','$q','$firebaseObject',function (Ref,$firebaseArray,$q,$firebaseObject) {
 
     var eventsRef = Ref.child('events');
     var query = eventsRef.orderByChild("date");
@@ -57,6 +57,16 @@ angular.module('webApp')
         return promise;  
     }
 
+    var leaveEvent = function(idEvent,uid){
+      Ref.child('events/'+ idEvent+ '/persons/' + uid).remove();
+      Ref.child('users/' + uid + '/events/' + idEvent).remove();
+    }
+
+    var getEventsByUid= function(uid){
+      return $firebaseArray(Ref.child("events").orderByChild("uid").equalTo(uid));
+        
+}
+
     var addPerson = function(idEvent,uid){
       return Ref.child("events").child(idEvent).child("persons").update({[uid] : true})
     }
@@ -68,6 +78,8 @@ angular.module('webApp')
       getEventsByIds: getEventsByIds,
       getEventById: getEventById,
       addPerson: addPerson,
+      getEventsByUid : getEventsByUid,
+      leaveEvent: leaveEvent
     }
 
 

@@ -46,6 +46,14 @@ angular.module('webApp')
             return $firebaseAuth().$requireSignIn();
           }]
       }})
+      .when('/app/me/events/attend', {
+        templateUrl: 'views/attendEvents.html',
+        controller: 'MyEventsCtrl',
+        resolve: {
+            "currentAuth": ["$firebaseAuth", function($firebaseAuth) {
+            return $firebaseAuth().$requireSignIn();
+          }]
+      }})
       .when('/app/account', {
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl',
@@ -54,7 +62,7 @@ angular.module('webApp')
             return $firebaseAuth().$requireSignIn();
           }]
       }})
-      
+            
       .otherwise({redirectTo: '/login'});
   }])
 
@@ -63,6 +71,8 @@ angular.module('webApp')
 
     if (error === "AUTH_REQUIRED") {
       $location.path("/login");
+      window.location.reload(); 
+
     }
   });
 }]);

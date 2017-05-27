@@ -49,19 +49,26 @@ angular.module('webApp')
   });
 
     Ref.child('users').child(firebaseUser.uid).child("events").on('value',function(snapshot) {
+       if($routeParams.id!=null){
         userSrv.checkEvent(firebaseUser.uid,$routeParams.id).then(function(data){
         $scope.unlinkedUser = false;
       }).catch(function(){
         $scope.unlinkedUser = true;
       })
+       }
     });
 
     Ref.child('users').child(firebaseUser.uid).child("eventsCreated").on('value',function(snapshot) {
+      if($routeParams.id!=null){
+        
         userSrv.checkEventCreated(firebaseUser.uid,$routeParams.id).then(function(data){
         $scope.adminEvent = true;
       }).catch(function(){
         $scope.adminEvent = false;
+                console.log("pasa")
+
       })
+      }
     });
 
 
