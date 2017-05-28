@@ -74,7 +74,7 @@ angular.module('webApp')
             })
 
             modalInstance.result.then(function () {}, function () {
-               clearAll();
+               //clearAll();
               });
           
     }

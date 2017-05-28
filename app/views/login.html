@@ -29,12 +29,16 @@ footer{
     </div>
 <div class="container" >
   <div class="row" style="margin-top: 50px">
-    <h1 class="text-center" >TechEvents</h1>
+    <h1 class="text-center" style="color: white; font-size: 70px; text-shadow:-1px -1px 0 #1abc9c,1px -1px 0 #1abc9c,-1px 1px 0 #1abc9c,1px 1px 0 #1abc9c;  " >TechEvents</h1>
   </div>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="jumbotron login">
             <form role="form">
+              <p class="form-group" ng-cloak ng-show="createMode">
+                <label for="loginConfirm">Usuario</label>
+                <input id="loginConfirm" required name="name" type="text" ng-model="name" class="form-control" />
+              </p>
               <p class="form-group">
                 <label for="loginEmail">E-mail</label>
                 <input id="loginEmail" required name="email" type="email" ng-model="email" class="form-control" />
@@ -50,10 +54,10 @@ footer{
 
               <p>
                 <button  class="btn customBtn" ng-click="login(email, pass)" ng-hide="createMode"  ng-disabled="form.$invalid">Log In</button>
-                <button  class="btn btn-default" ng-click="createMode = true" ng-hide="createMode">Register</button>
+                <button  class="btn btn-default" ng-click="createMode = true" ng-hide="createMode">Registrarse</button>
                 <button  class="btn customBtn" ng-cloak ng-show="createMode"
-                        ng-click="createAccount(email, pass, confirm)">Create Account</button>
-                <button  class="btn btn-default" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
+                        ng-click="createAccount(email, pass, confirm)">Crear cuenta</button>
+                <button  class="btn btn-default" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancelar</button>
               </p>
             </form>
             <p ng-show="err" class="bg-danger">{{err}}</p>

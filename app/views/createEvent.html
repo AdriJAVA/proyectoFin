@@ -1,10 +1,10 @@
 <div style="margin-top: 130px;">
     <h1 style="text-align: center">CREA TUS PROPIOS EVENTOS</h1>
-    <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 newEvent" >
+    <div class="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 newEvent" >
             <form name="formEvent" class="form-horizontal" novalidate>
                 <div class="form-group">
                     <label class="control-label labelCustom">Imagen:</label>
-                        <input type="file" class="form-control"  image-with-preview ng-file="imageUpload" ng-model="event.image" accept="image/jpeg,image/png" required>
+                        <input type="file" style="border: 0.5px solid #1abc9c" class="form-control"  image-with-preview ng-file="imageUpload" ng-model="event.image" accept="image/jpeg,image/png" required hidden>
                         <br>
                         <img class="img-responsive" style="width: 250px; height: 200px; margin-left: calc(50% - 120px);" ng-show="event.image.src" ng-src="{{event.image.src}}"/>
                 </div>
@@ -12,13 +12,15 @@
                 <div class="form-group">
                     <label class="control-label labelCustom" >Nombre:</label>
                         <p class="bg-danger err" ng-show="formEvent.name.$error.minlength">Debe tener mínimo 6 carácteres</p>
-                        <input type="text" name="name" class="form-control" ng-model="event.name" ng-minlength="6" required>
+                        <p class="bg-danger err" ng-show="formEvent.name.$error.maxlength">Debe tener máximo 25 carácteres</p>
+                        <input type="text" name="name" class="form-control" ng-model="event.name" ng-minlength="6" ng-maxlength="25" required>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label labelCustom">Descripción:</label>
                              <p class="bg-danger err" ng-show="formEvent.description.$error.minlength">Debe tener mínimo 30 carácteres</p>
-                            <textarea name="description" class="form-control" style="resize: none; height: 100px;" ng-model="event.description" ng-minlength="30" required></textarea>
+                             <p class="bg-danger err" ng-show="formEvent.description.$error.maxlength">Debe tener máximo 200 carácteres</p>
+                            <textarea name="description" class="form-control" style="resize: none; height: 100px;" ng-model="event.description" ng-minlength="30"  ng-maxlength="200"  required></textarea>
                 </div>
 
                 <div class="form-group">
@@ -27,7 +29,7 @@
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
-                                <div uib-timepicker ng-model="event.time" style="margin-left: calc(50% - 50px)" show-meridian="ismeridian"></div>
+                                <div uib-timepicker ng-model="event.time" style="margin-left: calc(50% - 50px)" show-meridian="ismeridian" required></div>
                                 </p>
                 </div>
 
@@ -39,7 +41,8 @@
                 <div class="form-group">
                     <label class="control-label labelCustom">Lugar:</label>
                         <p class="bg-danger err" ng-show="formEvent.place.$error.minlength">Debe tener mínimo 10 carácteres</p>
-                        <input type="text" name="place" class="form-control" ng-model="event.place" ng-minlength="10" required>   
+                        <p class="bg-danger err" ng-show="formEvent.place.$error.maxlength">Debe tener máximo 25 carácteres</p>
+                        <input type="text" name="place" class="form-control" ng-model="event.place" ng-minlength="10" ng-maxlength="25" r required>   
                 </div>
                 <div class="form-group">
                     <label class="control-label labelCustom">Plazas:</label>

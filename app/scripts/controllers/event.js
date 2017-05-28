@@ -8,7 +8,7 @@
  * Controller of the webApp
  */
 angular.module('webApp')
-  .controller('EventCtrl', ['$scope','$rootScope','$firebaseAuth','userSrv','$firebaseArray','$routeParams','eventsSrv','provincesSrv','Ref','firebaseUser','$uibModal',function ($scope,$rootScope,$firebaseAuth,userSrv,$firebaseArray,$routeParams,eventsSrv,provincesSrv,Ref,firebaseUser,$uibModal) {
+  .controller('EventCtrl', ['$scope','$rootScope','$firebaseAuth','userSrv','$firebaseArray','$routeParams','eventsSrv','provincesSrv','Ref','firebaseUser','$uibModal','$location',function ($scope,$rootScope,$firebaseAuth,userSrv,$firebaseArray,$routeParams,eventsSrv,provincesSrv,Ref,firebaseUser,$uibModal,$location) {
     
     $rootScope.showNav = true;
 
@@ -41,11 +41,20 @@ angular.module('webApp')
 
     Ref.child('events').child($routeParams.id).on('value',function(snapshot) {
       var event = snapshot.val();
-      if(event.persons !=null){
-      $scope.persons =  Object.keys(event.persons).length;
-      }else{
-        $scope.persons = 0;
+      if(event!= null){
+        if(event.persons !=null){
+        $scope.persons =  Object.keys(event.persons).length;
+          if($scope.persons >= event.capacity){
+            $scope.fullEvent = true;
+          }
+        }else{
+          $scope.persons = 0;
+        }
       }
+        if(event=== null & $routeParams.id !== null){
+         $location.path('/app/events/all')
+        }
+      
   });
 
     Ref.child('users').child(firebaseUser.uid).child("events").on('value',function(snapshot) {
@@ -65,8 +74,6 @@ angular.module('webApp')
         $scope.adminEvent = true;
       }).catch(function(){
         $scope.adminEvent = false;
-                console.log("pasa")
-
       })
       }
     });

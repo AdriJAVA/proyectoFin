@@ -26,10 +26,8 @@ angular.module('webApp')
         eventsRef.once("value",function(snapshot) {
             if(snapshot.val()){
               snapshot.val()
-              console.log("Existe")
               deferred.resolve(true)
             }else{
-              console.log("No existe")
               deferred.reject(false);
             }
         });
@@ -48,7 +46,6 @@ angular.module('webApp')
               console.log("Existe")
               deferred.resolve(true)
             }else{
-              console.log("No existe")
               deferred.reject(false);
             }
         });

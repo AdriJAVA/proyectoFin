@@ -18,13 +18,16 @@ angular.module('webApp')
       return events.reverse();
     };
 
+    var getEvents = function(n){
+      return $firebaseArray(Ref.child('events').orderByChild('date').limitToLast(n)).reverse();
+    }
+
     var createEvent = function(event){
 
       var deferred = $q.defer();
       var promise = deferred.promise;
 
       events.$add(event).then(function(data){
-        console.log(data)
         deferred.resolve(data.key);
       }).catch(function(error) {
           deferred.reject(error);
@@ -63,14 +66,23 @@ angular.module('webApp')
     }
 
     var getEventsByUid= function(uid){
-      return $firebaseArray(Ref.child("events").orderByChild("uid").equalTo(uid));
-        
+      return $firebaseArray(Ref.child("events").orderByChild("uid").equalTo(uid));    
 }
 
     var addPerson = function(idEvent,uid){
       return Ref.child("events").child(idEvent).child("persons").update({[uid] : true})
     }
 
+    var removeEvent = function(event,uid){
+      if(event.persons!=null){
+        Object.keys(event.persons).forEach(function(key,index) {
+          Ref.child('users/' + key + '/events/' + event.$id).remove();
+        })
+      }
+      Ref.child('provinces/'+ event.province + '/events/' + event.$id).remove();
+      Ref.child('users/' + uid + '/eventsCreated/' + event.$id).remove();
+      Ref.child('events/'+ event.$id).remove();
+    }
 
     return{
       createEvent: createEvent,
@@ -79,7 +91,9 @@ angular.module('webApp')
       getEventById: getEventById,
       addPerson: addPerson,
       getEventsByUid : getEventsByUid,
-      leaveEvent: leaveEvent
+      leaveEvent: leaveEvent,
+      removeEvent: removeEvent,
+      getEvents: getEvents
     }
 
 

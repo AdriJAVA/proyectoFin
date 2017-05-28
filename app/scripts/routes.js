@@ -46,9 +46,17 @@ angular.module('webApp')
             return $firebaseAuth().$requireSignIn();
           }]
       }})
-      .when('/app/me/events/attend', {
-        templateUrl: 'views/attendEvents.html',
-        controller: 'MyEventsCtrl',
+      .when('/app/me/events/attendee', {
+        templateUrl: 'views/attendeeEvents.html',
+        controller: 'AttendeeCtrl',
+        resolve: {
+            "currentAuth": ["$firebaseAuth", function($firebaseAuth) {
+            return $firebaseAuth().$requireSignIn();
+          }]
+      }})
+      .when('/app/me/events/admin', {
+        templateUrl: 'views/adminEvents.html',
+        controller: 'AdminCtrl',
         resolve: {
             "currentAuth": ["$firebaseAuth", function($firebaseAuth) {
             return $firebaseAuth().$requireSignIn();

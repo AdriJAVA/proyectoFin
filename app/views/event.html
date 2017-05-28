@@ -27,7 +27,7 @@
                                     <uib-progressbar class="progress-striped active" max="event.capacity" value="persons" type="warning" ><span style="color: black; white-space:nowrap;"> {{persons}} / {{event.capacity}}</span></uib-progressba>      
                                 </p>
                             </div>
-                            <div ng-if="unlinkedUser && !adminEvent" >
+                            <div ng-if="unlinkedUser && !adminEvent && !fullEvent" >
                                 <button type="submit" ng-click="joinEvent()" class="btn btn-default">UNIRSE A EVENTO</button>
                              </div>
 
@@ -36,6 +36,9 @@
                              </div>
                              <div ng-if="adminEvent">
                                     <h3>ERES EL CREADOR DE ESTE EVENTO</h3>
+                             </div>
+                             <div ng-if="fullEvent && unlinkedUser">
+                                    <h3 style="color: red;">EVENTO LLENO</h3>
                              </div>
             </div>
 

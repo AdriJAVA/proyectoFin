@@ -19,20 +19,22 @@ angular.module('webApp')
     }
 
 
-    $scope.createAccount = function(email, pass, confirm) {
-      
+    $scope.createAccount = function(email,pass,confirm) {
       $scope.err = null;
+      if(pass === confirm){
         Auth.$createUserWithEmailAndPassword(email, pass)
           .then(function () {
             return Auth.$signInWithEmailAndPassword(email, pass);
           })
           .then(createProfile)
           .then(redirect, showError);
-      
+      }else{
+          showError("Las contraseñas no coinciden");
+      }
 
       function createProfile(user) {
         var Profileref = Ref.child('users').child(user.uid), def = $q.defer();
-        Profileref.set({email: email, name: firstPartOfEmail(email)}, function(err) {
+        Profileref.set({email: email, name: $scope.name}, function(err) {
           $timeout(function() {
             if( err ) {
               def.reject(err);
@@ -45,19 +47,6 @@ angular.module('webApp')
         return def.promise;
       }
     };
-
-    function firstPartOfEmail(email) {
-      return ucfirst(email.substr(0, email.indexOf('@'))||'');
-    }
-
-    function ucfirst (str) {
-      // inspired by: http://kevin.vanzonneveld.net
-      str += '';
-      var f = str.charAt(0).toUpperCase();
-      return f + str.substr(1);
-    }
-
-  
 
     function redirect() {
       $location.path('/account');

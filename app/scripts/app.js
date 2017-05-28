@@ -17,5 +17,6 @@ angular.module('webApp', [
     'ngTouch',
     'firebase',
     'ui.bootstrap',
-    'ngImageInputWithPreview'
+    'ngImageInputWithPreview',
+    'infinite-scroll'
   ]);
