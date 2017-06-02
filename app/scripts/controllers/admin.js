@@ -35,6 +35,27 @@ angular.module('webApp')
         });
     }
 
+    $scope.editEvent = function(event){
+      var modalInstance = $uibModal.open({
+                animation: true,
+                    templateUrl: '../views/modalEditEvent.html',
+                    controller: 'modalEditEventCtrl',
+                    size: 'md',
+                    resolve:  {   
+                      event : function(){
+                        return event;
+                      }
+                    }
+                                
+              
+            }) 
+
+    modalInstance.result.then( function () {
+        eventsSrv.removeEvent(event,firebaseUser.uid)
+        $location.path('/app/me/events/admin')
+        });
+    }
+
     $scope.click = function(event){
       $location.path('/app/event/' + event.$id)
     }

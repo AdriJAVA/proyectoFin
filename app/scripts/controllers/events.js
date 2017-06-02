@@ -12,7 +12,6 @@ angular.module('webApp')
     
     $rootScope.showNav = true;
     $scope.n = 10;
-    console.log($routeParams.province)
     
     getEvents();
     
@@ -29,8 +28,10 @@ angular.module('webApp')
 
 
     Ref.child('events').on('value',function(snapshot) {
-     if($routeParams.province !== 'all'){
+      console.log(snapshot.val())
+     if($routeParams.province !== 'all' && $routeParams.province!=null ){
        getEvents();
+       console.log("pasa")
      }
       
       

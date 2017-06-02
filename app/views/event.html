@@ -1,7 +1,11 @@
 <div CLASS="container" style="margin-top: 130px;">
     <div class="row">
-                <div class="col-md-8 col-sm-8   text-center" >
-                        <div class="jumbotron shadow" style="background-color:#1abc9c;">
+                <div class="col-md-8 col-sm-8 text-center" >
+                    <div class="panel panel-default shadow"  style="background-color:#1abc9c;">
+                        <div class="panel-heading" >
+                            <h3 class="panel-title">{{event.name}}</h3>
+                        </div>
+                        <div class="panel-body">
                             <img class="img-responsive img-thumbnail" ng-src="{{event.image}}">
 
                             <div >
@@ -15,8 +19,12 @@
 
                             <h5>Lugar:</h5>
                                 <p class="white">{{event.place}}</p>
+                            <h5>Fecha:</h5>
+                            <p class="white"> {{event.date | date:'dd-MM-yyyy'}}</p>  
                             <h5>Hora:</h5>
                             <p class="white"> {{hour | date: 'HH:mm'}}</p>     
+                             
+                    </div>
                     </div>
             </div>
 
@@ -42,5 +50,29 @@
                              </div>
             </div>
 
+            <div class="col-md-4 col-sm-4 text-center shadow" style="margin-top: 20px; padding: 10px" >
+                    <p>EVENTO CREADO POR</p>
+                    <img src="../images/user.png" class="img-responsive imageUser" style="width: 100px; margin: 0 auto;" alt="">
+                    <p style="color: #1abc9c">{{user.name | uppercase}}</p>
+            </div>
+
+            <div class="col-md-4 col-sm-4" style="margin-top: 20px; " >
+                    <div class="panel panel-default shadow">
+                        <div class="panel-heading  text-center" >
+                            <h3 class="panel-title">ASISTENTES</h3>
+                        </div>
+                        <div class="panel-body"  style="max-height: 250px; overflow-y: scroll;" >
+                            <p ng-repeat="attendee in attendees" style="font-size: 15px"> 
+                                {{attendee.name}}
+                            </p>
+                                
+                            <p ng-if="noAttendees" style="font-size: 15px; color: red;"> 
+                                NO HAY ASISTENTES
+                            </p>
+                             
+                    </div>
+                    </div>
+            </div>
+        </div>
     </div>
 </div>

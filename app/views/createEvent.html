@@ -1,4 +1,4 @@
-<div style="margin-top: 130px;">
+<div style="margin-top: 110px;">
     <h1 style="text-align: center">CREA TUS PROPIOS EVENTOS</h1>
     <div class="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 newEvent" >
             <form name="formEvent" class="form-horizontal" novalidate>
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="control-label labelCustom">Plazas:</label>
                         <p class="bg-danger err" ng-show="formEvent.capacity.$error.max">Número introducido demasiado grande</p>
-                        <input type="number" name="capacity" class="form-control" ng-model="event.capacity" max="10000" required>   
+                        <input type="number" name="capacity" class="form-control" ng-model="event.capacity" min="1" max="10000" required>   
                 </div>
                 <div  ng-if="show">
                     <uib-progressbar class="progress-striped active" max="100" value="progress" type="warning" ><span style="color: black; white-space:nowrap;"> {{progress}} / 100</span></uib-progressba>      

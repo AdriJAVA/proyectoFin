@@ -22,7 +22,17 @@ angular.module('webApp')
     })
     .then(function(data){
       $scope.province = data.name; 
+    }).then(function(){
+      $scope.user = userSrv.getUser($scope.event.uid);
+      if($scope.event.persons != null){
+        $scope.attendees = userSrv.getUsersByUids($scope.event.persons);
+        $scope.noAttendees = false;
+      }else{
+        $scope.noAttendees = true;
+      }
+      
     })
+
 
     $scope.joinEvent = function(){
       eventsSrv.addPerson($scope.event.$id,firebaseUser.uid)
@@ -54,6 +64,14 @@ angular.module('webApp')
         if(event=== null & $routeParams.id !== null){
          $location.path('/app/events/all')
         }
+
+        if(event.persons != null){
+            $scope.attendees = userSrv.getUsersByUids(event.persons);
+            $scope.noAttendees = false;
+        }else{
+          $scope.noAttendees = true;
+      }
+
       
   });
 
@@ -77,6 +95,7 @@ angular.module('webApp')
       })
       }
     });
+
 
 
 

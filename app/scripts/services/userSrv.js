@@ -8,7 +8,7 @@
  * Service in the webApp.
  */
 angular.module('webApp')
-  .factory('userSrv', ['Ref','$firebaseArray','$q',function (Ref,$firebaseArray,$q) {
+  .factory('userSrv', ['Ref','$firebaseArray','$q','$firebaseObject',function (Ref,$firebaseArray,$q,$firebaseObject) {
     var users = $firebaseArray(Ref.child("users"));
     var addEventCreated = function(idUser,idEvent){
       return Ref.child("users").child(idUser).child("eventsCreated").update({[idEvent] : true})
@@ -66,6 +66,21 @@ angular.module('webApp')
         return promise;
     }
 
+    var getUser = function(uid){
+      return $firebaseObject(Ref.child("users").child(uid));
+    }
+
+     var getUsersByUids= function(list){
+      var aux = [];
+      Object.keys(list).forEach(function(key,index) {
+        users.$loaded().then(function(){
+            aux.push(users.$getRecord(key))
+        })
+      });
+
+      return aux;
+    }
+
 
 
     
@@ -74,7 +89,9 @@ angular.module('webApp')
       addEvent: addEvent,
       checkEvent: checkEvent,
       checkEventCreated: checkEventCreated,
-      getEvents:getEvents
+      getEvents:getEvents,
+      getUser: getUser,
+      getUsersByUids: getUsersByUids
     }
 
 

@@ -15,7 +15,8 @@
       margin-bottom: 0;
       font-size: 12px;
       letter-spacing: 5px;
-      z-index: 1;
+      z-index: 10;
+      border-bottom: 1px solid black;
   }
   .navbar-nav  li a:hover {
       color: #1abc9c !important;
@@ -28,6 +29,7 @@
 #chart_wrap {
     margin-top: 150px;
  }
+ 
 
 .customBtn{
     background-color: #1abc9c;
@@ -37,6 +39,10 @@
 
 .labelCustom{
     font-weight: 100;
+}
+
+.imageUser{
+  border-radius: 200px;
 }
 
 .white{

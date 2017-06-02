@@ -36,8 +36,13 @@
 
 
     </div>
-
-
+    <div ng-if="!showNav">
+            <footer class="text-center"style=" border-top: 1px solid black; width: 100%; height: 30px; position:fixed; bottom: 0px ;background-color: #f8f8f8;">
+              <div particles>
+              </div>
+              <h5 >Desarrollado por Adrián</h5>
+          </footer>
+</div>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -55,7 +60,21 @@
     <script src="lib/ng-image-input-with-preview.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngInfiniteScroll/1.3.0/ng-infinite-scroll.min.js"></script>
 
+<style>
 
+canvas {
+  display: block;
+  vertical-align: bottom;
+}
+/* ---- particles.js container ---- */
+
+#particleJs {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -82,6 +101,7 @@
         <script src="scripts/controllers/modals/eventCreated.js"></script>
         <script src="scripts/controllers/modals/modalInfoProvince.js"></script>
         <script src="scripts/controllers/modals/modalMyEvents.js"></script>
+        <script src="scripts/controllers/modals/modalEditEvent.js"></script>
         <script src="scripts/controllers/event.js"></script>
         <script src="scripts/controllers/navbar.js"></script>
         <script src="scripts/controllers/notification.js"></script>

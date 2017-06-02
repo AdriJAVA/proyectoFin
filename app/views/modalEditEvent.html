@@ -1,0 +1,46 @@
+<div class="modal-content">
+    <div class="modal-header">
+            <h3 class="modal-title text-center">{{event.name}}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <form name="formEvent" class="form-horizontal" novalidate>
+                  <div class="col-md-10 col-md-offset-1">  
+                    <div class="form-group">
+                        <label class="control-label labelCustom">Descripción:</label>
+                                <p class="bg-danger err" ng-show="formEvent.description.$error.minlength">Debe tener mínimo 30 carácteres</p>
+                                <p class="bg-danger err" ng-show="formEvent.description.$error.maxlength">Debe tener máximo 200 carácteres</p>
+                                <textarea name="description" class="form-control" style="resize: none; height: 100px;" ng-model="event.description" ng-minlength="30"  ng-maxlength="200"  required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                                <p class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="event.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                    <div uib-timepicker ng-model="event.time" style="margin-left: calc(50% - 50px)" show-meridian="ismeridian" required></div>
+                                    </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label labelCustom">Lugar:</label>
+                            <p class="bg-danger err" ng-show="formEvent.place.$error.minlength">Debe tener mínimo 10 carácteres</p>
+                            <p class="bg-danger err" ng-show="formEvent.place.$error.maxlength">Debe tener máximo 25 carácteres</p>
+                            <input type="text" name="place" class="form-control" ng-model="event.place" ng-minlength="10" ng-maxlength="25" r required>   
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label labelCustom">Plazas:</label>
+                            <p class="bg-danger err" ng-show="formEvent.capacity.$error.max">Número introducido demasiado grande</p>
+                            <input type="number" name="capacity" class="form-control" ng-model="event.capacity" min="{{min}}" max="10000" required>   
+                    </div>
+                    
+                    <p ng-show="err" class="bg-danger">Failed to create event</p>
+                    <div class="form-group" style="text-align: center;">        
+                        <button type="submit" style="color: white;" class="btn customBtn" ng-click="createEvent()" ng-disabled="formEvent.$invalid">EDITAR EVENTO</button>
+                    </div>
+                </form>
+        </div>
+        </div>
+    </div>
+</div>

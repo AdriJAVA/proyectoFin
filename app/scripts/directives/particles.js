@@ -15,7 +15,7 @@ angular.module('webApp')
       $window.particlesJS('particleJs', {
         particles: {
           number: {
-            value: 75,
+            value: 40,
             density: {
               enable: true,
               value_area: 800

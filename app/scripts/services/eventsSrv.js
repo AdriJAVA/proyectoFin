@@ -19,7 +19,7 @@ angular.module('webApp')
     };
 
     var getEvents = function(n){
-      return $firebaseArray(Ref.child('events').orderByChild('date').limitToLast(n)).reverse();
+      return $firebaseArray(Ref.child('events').orderByChild('date').limitToFirst(n)).reverse();
     }
 
     var createEvent = function(event){
