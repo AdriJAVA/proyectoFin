@@ -10,7 +10,6 @@
 angular.module('webApp')
   .directive('ngHideAuth', ['Auth', '$timeout', function (Auth, $timeout) {
     'use strict';
-        console.log("pasa")
 
     return {
       restrict: 'A',

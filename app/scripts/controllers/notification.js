@@ -20,15 +20,14 @@ angular.module('webApp')
   var event = false;
 
   Ref.child('events').on('child_added',function(snapshot) {
+    
     if (!event) return;
     var newEvent = snapshot.val();
-    console.log(newEvent)
     var id = newEvent.$id;
     var alert = {};
     alert.name = newEvent.name;
-    alert.id = id;
+    alert.id = snapshot.key;
     $scope.alerts.push(alert);
-    console.log(alert)
     
   })
 

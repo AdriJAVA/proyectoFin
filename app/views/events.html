@@ -3,7 +3,7 @@
     <h1 style="text-align: center">EVENTOS EN {{province | uppercase}}</h1>
     <div class="container"> 
                 <div class="cards" infinite-scroll='loadMore()'>
-                    <div class="card" style="text-align: center;" href="#" ng-repeat="event in events" ng-click="click(event)">
+                    <div class="card" style="text-align: center;" href="#" ng-repeat="event in events" ng-click="click(event)" ng-class="{disabled: currentDate > event.date}">
                         <span class="card-header" style="background-image: url({{event.image}});" >
                             <span class="card-title">
                                 <h4 style="margin-left: 5px;">{{event.name}}</h3>
@@ -12,11 +12,11 @@
                         <span class="card-summary" style=" margin-top: 10px; color: black;">
                             <h6>{{event.date | date: 'dd-MM-yyyy'}}</h6>
                         </span>
-		                </div>
+                    </div>
+
                 </div>
             </div>  
-        </div>
-        
+        </div>   
 </div>
 
 <div ng-include src="'views/notification.html'"></div>

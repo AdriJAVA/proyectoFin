@@ -7,7 +7,9 @@
  */
 angular.module('webApp')
 
-  .config(['$routeProvider', function($routeProvider) {
+  .config(['$routeProvider','$qProvider',function($routeProvider,$qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+
     $routeProvider
       .when('/login', {
         templateUrl: 'views/login.html',

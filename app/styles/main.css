@@ -30,15 +30,44 @@
     margin-top: 150px;
  }
  
+.image-upload > input
+{
+    display: none;
+}
 
+.image-upload img
+{
+    width: 80px;
+    cursor: pointer;
+}
 .customBtn{
     background-color: #1abc9c;
     border: 0;
     color: white;
 }
 
+.customBtn:hover{
+    border: 0;
+    color: white;
+}
+
+.customBtn:focus{
+    color: white;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+}
 .labelCustom{
     font-weight: 100;
+}
+
+.disabled{
+  pointer-events: none;
+
+  /* for "disabled" effect */
+  opacity: 0.5;
+  background: #CCC;
 }
 
 .imageUser{

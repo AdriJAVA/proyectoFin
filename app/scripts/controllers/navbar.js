@@ -8,6 +8,5 @@ angular.module('webApp')
      Auth.$signOut();   
     window.location.reload(); 
   };
-  $scope.name = $firebaseObject(Ref.child('users/' + firebaseUser.uid+'/name'))
-  console.log($scope.name)
+
   }]);

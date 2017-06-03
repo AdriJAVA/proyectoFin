@@ -43,7 +43,6 @@ angular.module('webApp')
         eventsRef.once("value",function(snapshot) {
             if(snapshot.val()){
               snapshot.val()
-              console.log("Existe")
               deferred.resolve(true)
             }else{
               deferred.reject(false);

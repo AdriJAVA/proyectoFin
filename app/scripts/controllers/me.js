@@ -22,11 +22,10 @@ angular.module('webApp')
           var metadata = {
             contentType: 'image/jpeg'
           };
+          var nameFile = guid();
 
-          console.log($scope.event)
-
-          var uploadTask = storageRef.child('images/' + guid()).put(file, metadata);
-
+          var uploadTask = storageRef.child('images/' + nameFile).put(file, metadata);
+          
           uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
             function(snapshot) {
               var progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
@@ -41,6 +40,7 @@ angular.module('webApp')
             $scope.event.province = $scope.province.$id;
             $scope.event.date = $scope.event.date.getTime();
             $scope.event.time = $scope.event.time.toString();
+            $scope.event.imagePath = 'images/' + nameFile;
              eventsSrv.createEvent($scope.event)
              .then(function(key){
                $scope.key = key;
@@ -74,7 +74,7 @@ angular.module('webApp')
             })
 
             modalInstance.result.then(function () {}, function () {
-               //clearAll();
+               clearAll();
               });
           
     }

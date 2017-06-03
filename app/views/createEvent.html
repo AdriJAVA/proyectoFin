@@ -4,7 +4,9 @@
             <form name="formEvent" class="form-horizontal" novalidate>
                 <div class="form-group">
                     <label class="control-label labelCustom">Imagen:</label>
+                <div class="btn ">
                         <input type="file" style="border: 0.5px solid #1abc9c" class="form-control"  image-with-preview ng-file="imageUpload" ng-model="event.image" accept="image/jpeg,image/png" required hidden>
+                    </div>
                         <br>
                         <img class="img-responsive" style="width: 250px; height: 200px; margin-left: calc(50% - 120px);" ng-show="event.image.src" ng-src="{{event.image.src}}"/>
                 </div>

@@ -12,7 +12,6 @@ angular.module('webApp')
     $rootScope.showNav = false;
     $scope.login = function(email,pass){
         Auth.$signInWithEmailAndPassword(email,pass).then(function(firebaseUser){
-            console.log("Signed in as:", firebaseUser.uid);
             $location.path('/app/home');
         })
         .catch(showError)
@@ -34,7 +33,7 @@ angular.module('webApp')
 
       function createProfile(user) {
         var Profileref = Ref.child('users').child(user.uid), def = $q.defer();
-        Profileref.set({email: email, name: $scope.name}, function(err) {
+        Profileref.set({email: email, name: $scope.name,image: "../images/user.png"}, function(err) {
           $timeout(function() {
             if( err ) {
               def.reject(err);

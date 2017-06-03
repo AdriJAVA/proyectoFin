@@ -1,1 +1,72 @@
-account
+
+<div class="row-fluid" style="margin-top: 120px">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default shadow">
+                <div class="panel-heading text-center" >
+                    <h4>PERFIL</h4>
+                </div>
+                            
+                <div class="panel-body">
+                            <form  name="formName" novalidate>
+
+                                    <div class="image-upload text-center">
+                                        <label for="file-input">
+                                                <img class="img-responsive" style="width: 150px; border-radius: 150px;" ng-show="profile.image.src" ng-src="{{profile.image.src}}"/>
+
+                                        </label>
+                                            <input id="file-input" type="file" class="form-control"  image-with-preview ng-file="imageUpload" ng-model="profile.image" accept="image/jpeg,image/png" required hidden>
+                                    <p style="font-size: 10px;">Pulsa sobre la imagen </p>
+                                    </div>
+                                     <br>                                   
+                                    <p class="form-group">
+                                        <label>Email:</label><br>
+                                        {{profile.email}}
+                                    </p>
+
+                                    <p class="form-group">
+                                        <label>Nombre:</label>
+                                        <input type="text" name="name" ng-model="profile.name"  ng-minlength="6" ng-maxlength="20"  class="form-control" style="display: inline;"/>
+                                        <p class="bg-danger err" ng-show="formName.name.$error.minlength">Debe tener mínimo 6 carácteres</p>
+                                        <p class="bg-danger err" ng-show="formName.name.$error.maxlength">Debe tener máximo 20 carácteres</p>
+                                    </p>
+                                     <p ng-show="successProfile" class="bg-success">Perfil actualizado</p>
+
+                                    <button ng-click="updateProfile()" class="btn customBtn btn-block" ng-disabled="formName.$invalid">Actualizar perfil</button>
+                            </form>
+                </div>
+</div>
+
+                <div class="panel panel-default shadow">
+                        <div class="panel-heading text-center" >
+                            <h4>CAMBIAR CONTRASEÑA</h4>
+                        </div>
+                        <div class="panel-body">
+                                    <form  name="formPass" novalidate>
+
+                                            <p class="form-group">
+                                                <label>Contraseña actual:</label>
+                                                <input type="password"  ng-model="oldpass" class="form-control" required/>
+                                            </p>
+
+                                            <p class="form-group">
+                                                <label>Nueva contraseña:</label>
+                                                <input type="password" name="newPass"  ng-minlength="6"  ng-model="newpass" class="form-control" required/>
+                                                <p class="bg-danger err" ng-show="formPass.newPass.$error.minlength">Debe tener mínimo 6 carácteres</p>
+
+                                            </p>
+
+                                            <p class="form-group">
+                                                <label>Confirmar nueva contraseña:</label>
+                                                <input type="password" name="confirm"  ng-minlength="6" ng-model="confirm" class="form-control" required/>
+                                                <p class="bg-danger err" ng-show="formPass.confirm.$error.minlength">Debe tener mínimo 6 carácteres</p>
+
+                                            </p>
+                                    <p ng-show="successPass" class="bg-success">Contraseña cambiada</p>
+                                    <p ng-show="errPass" class="bg-danger">{{errPass}}</p>
+
+                                    <button type="submit" class="btn customBtn btn-block" ng-click="changePassword(oldpass, newpass, confirm)" ng-disabled="formPass.$invalid">Cambiar contraseña</button>
+                                    </form>
+                        </div>
+    
+</div>
+    

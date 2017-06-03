@@ -2,7 +2,6 @@
 
 angular.module('webApp')
   .controller('modalInfoProvinceCtrl', ['$scope','$uibModalInstance','$log','province','provincesSrv','$location',function ($scope,$uibModalInstance,$log,province,provincesSrv,$location) {
-        console.log(province)
         $scope.province = province;
         provincesSrv.getProvinceById(province).then(function(data){
           $scope.name = data.name;

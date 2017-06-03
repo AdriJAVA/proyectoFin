@@ -7,56 +7,52 @@
  * Provides rudimentary account management functions.
  */
 angular.module('webApp')
-  .controller('AccountCtrl',['$scope','$rootScope','$firebaseAuth','$timeout',function ($scope,$rootScope,$firebaseAuth,$timeout) {
+  .controller('AccountCtrl',['$scope','$rootScope','$firebaseAuth','$timeout','firebaseUser','$firebaseObject','Ref','Auth',function ($scope,$rootScope,$firebaseAuth,$timeout,firebaseUser,$firebaseObject,Ref,Auth) {
     $rootScope.showNav = true;
-    /*$scope.user = user;
-    $scope.logout = function() { Auth.$unauth(); };
-    $scope.messages = [];
-    var profile = $firebaseObject(Ref.child('users/'+user.uid));
-    profile.$bindTo($scope, 'profile');
+    $scope.user = firebaseUser;
     
-
+    $scope.profile = $firebaseObject(Ref.child('users/'+ firebaseUser.uid));  
+    
     $scope.changePassword = function(oldPass, newPass, confirm) {
       $scope.err = null;
-      if( !oldPass || !newPass ) {
-        error('Please enter all fields');
-      }
-      else if( newPass !== confirm ) {
-        error('Passwords do not match');
+
+      if( newPass !== confirm ) {
+        showError('Las contraseñas no coinciden');
       }
       else {
-        Auth.$changePassword({email: profile.email, oldPassword: oldPass, newPassword: newPass})
+        Auth.$updatePassword(newPass)
           .then(function() {
-            success('Password changed');
-          }, error);
+                $scope.successPass = true;
+          }, showError);
       }
     };
 
-    $scope.changeEmail = function(pass, newEmail) {
-      $scope.err = null;
-      Auth.$changeEmail({password: pass, newEmail: newEmail, oldEmail: profile.email})
-        .then(function() {
-          profile.email = newEmail;
-          profile.$save();
-          success('Email changed');
+    $scope.updateProfile = function() {
+       var storage = firebase.storage();
+      var storageRef = storage.ref();
+      var file = $scope.imageUpload;
+       var uploadTask = storageRef.child('imagesProfile/' + firebaseUser.uid).put(file);
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      function(){},function(){},
+          function(snapshot) {
+             var Profileref = Ref.child('users').child(firebaseUser.uid);
+             console.log(uploadTask.snapshot.downloadURL)
+                Profileref.update({name: $scope.profile.name,imagePath:'imagesProfile/' + firebaseUser.uid, image: uploadTask.snapshot.downloadURL }).then(function(){
+                  $scope.successProfile = true;
+                  $scope.$apply();
+                  $timeout(function(){
+                    $scope.successProfile = false;
+                  },2000)
         })
-        .catch(error);
-    };
+             
+          });
 
-    function error(err) {
-      alert(err, 'danger');
+       
+      }
+
+    function showError(err) {
+      $scope.errPass = err;
     }
 
-    function success(msg) {
-      alert(msg, 'success');
-    }
-
-    function alert(msg, type) {
-      var obj = {text: msg+'', type: type};
-      $scope.messages.unshift(obj);
-      $timeout(function() {
-        $scope.messages.splice($scope.messages.indexOf(obj), 1);
-      }, 10000);*/
-    
 
   }]);

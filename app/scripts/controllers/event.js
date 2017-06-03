@@ -65,12 +65,15 @@ angular.module('webApp')
          $location.path('/app/events/all')
         }
 
-        if(event.persons != null){
+        if(event != null && event.persons != null){
             $scope.attendees = userSrv.getUsersByUids(event.persons);
             $scope.noAttendees = false;
         }else{
+          $scope.attendees = []
           $scope.noAttendees = true;
       }
+
+      console.log(event)
 
       
   });

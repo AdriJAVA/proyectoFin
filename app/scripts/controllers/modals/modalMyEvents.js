@@ -2,7 +2,7 @@ angular.module('webApp')
   .controller('modalMyEventsCtrl', ['$scope','$uibModalInstance','$location','mode',function ($scope,$uibModalInstance,$location,mode) {
         
         $scope.mode = mode;
-        console.log(mode)
+
         $scope.yes = function(){
           $uibModalInstance.close()
         }

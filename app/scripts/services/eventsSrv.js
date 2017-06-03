@@ -60,10 +60,18 @@ angular.module('webApp')
         return promise;  
     }
 
+    var getEvent = function(id){
+      return $firebaseObject(Ref.child("events").child(id)) 
+    }
+
     var leaveEvent = function(idEvent,uid){
       Ref.child('events/'+ idEvent+ '/persons/' + uid).remove();
       Ref.child('users/' + uid + '/events/' + idEvent).remove();
     }
+
+    var getEventsByProvince= function(province){
+      return $firebaseArray(Ref.child("events").orderByChild("province").equalTo(province));    
+}
 
     var getEventsByUid= function(uid){
       return $firebaseArray(Ref.child("events").orderByChild("uid").equalTo(uid));    
@@ -82,6 +90,7 @@ angular.module('webApp')
       Ref.child('provinces/'+ event.province + '/events/' + event.$id).remove();
       Ref.child('users/' + uid + '/eventsCreated/' + event.$id).remove();
       Ref.child('events/'+ event.$id).remove();
+      firebase.storage().ref().child(event.imagePath).delete()
     }
 
     return{
@@ -93,7 +102,9 @@ angular.module('webApp')
       getEventsByUid : getEventsByUid,
       leaveEvent: leaveEvent,
       removeEvent: removeEvent,
-      getEvents: getEvents
+      getEvents: getEvents,
+      getEvent: getEvent,
+      getEventsByProvince: getEventsByProvince
     }
 
 

@@ -13,7 +13,6 @@ angular.module('webApp')
     $rootScope.showNav = true;
 
     $scope.events = eventsSrv.getEventsByUid(firebaseUser.uid) || 0;
-    console.log($scope.events.length)
     $scope.removeEvent = function(event){
       var modalInstance = $uibModal.open({
                 animation: true,
@@ -42,18 +41,14 @@ angular.module('webApp')
                     controller: 'modalEditEventCtrl',
                     size: 'md',
                     resolve:  {   
-                      event : function(){
-                        return event;
+                      idEvent : function(){
+                        return event.$id;
                       }
                     }
                                 
               
             }) 
 
-    modalInstance.result.then( function () {
-        eventsSrv.removeEvent(event,firebaseUser.uid)
-        $location.path('/app/me/events/admin')
-        });
     }
 
     $scope.click = function(event){

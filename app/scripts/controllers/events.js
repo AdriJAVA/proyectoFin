@@ -26,37 +26,21 @@ angular.module('webApp')
       }
     }
 
+    $scope.currentDate =  new Date().getTime();
 
-    Ref.child('events').on('value',function(snapshot) {
-      console.log(snapshot.val())
-     if($routeParams.province !== 'all' && $routeParams.province!=null ){
-       getEvents();
-       console.log("pasa")
-     }
-      
-      
-  });
+
 
    function getEvents()  {
     if($routeParams.province === 'all'){
       $scope.province = "ESPAÑA";
       $scope.events = eventsSrv.getEvents($scope.n);
-      console.log($scope.events)
     }else{
       provincesSrv.getProvinceById($routeParams.province)
       .then(function(data){
-        console.log(data)
         $scope.province = data.name;
-        return eventsSrv.getEventsByIds(data.events)
+        $scope.events = eventsSrv.getEventsByProvince($routeParams.province);
       })
-      .then(function(events){
-        console.log(events)
-        $scope.events = events;
-      })
-      .catch(function(err){
-        console.log(err)
-        $location.path('/app/events/all')
-      })
+ 
     }
   }
 
