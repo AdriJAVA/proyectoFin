@@ -1,0 +1,36 @@
+<div class="row-fluid" style="margin-top: 120px">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default shadow">
+                <div class="panel-heading text-center" >
+                    <h4>{{user.name | uppercase}}</h4>
+                </div>
+                            
+                <div class="panel-body ">
+
+                <img class="img-responsive" style="width: 150px; border-radius: 150px; margin: 0 auto;"  ng-src="{{user.image}}"/>
+                
+                <div class="text-center" style="margin-top: 20px; border-top: 1px solid #eff3f7;">
+                    <h5 style="font-weight: bold;">DESCRIPCIÓN</h5>
+                    <p style="font-size: 15px" ng-if="user.description">{{user.description}}</p>
+                    <p style="font-size: 15px" ng-if="!user.description">No tiene descripción</p>
+                </div>
+
+                <div class="text-center" style="margin-top: 20px; border-top: 1px solid #eff3f7;">
+                    <h5 style="font-weight: bold;" >EVENTOS CREADOS</h5>
+                    <p style="color: #1abc9c;">{{nEventsCreated}}</p>
+                </div>
+
+                <div class="text-center" style="margin-top: 20px; border-top: 1px solid #eff3f7;">
+                    <h5 style="font-weight: bold;">EVENTOS EN LOS QUE ESTA</h5>
+                    <p style="color: #1abc9c;">{{nEvents}}</p>
+                </div>
+
+                <div class="text-center" style="margin-top: 20px; border-top: 1px solid #eff3f7;">
+                    <button type="submit" ng-click="sendMessage()"class="btn customBtn btn-block"><span class="glyphicon">&#x2709;</span> Mandar invitación</button>
+                </div>
+
+                            
+                </div>
+        </div>
+    </div>
+</div>

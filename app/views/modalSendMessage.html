@@ -1,0 +1,23 @@
+<div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title">ENVIAR INVITACIÓN</h4>
+        </div>
+
+          <div class="modal-body">
+            <form name="messageForm">
+
+             <select style="width: 100%" ng-model="message.event" ng-options="x.$id as x.name for x in events" selected="selected"required>
+                        <option value="" disabled selected>Elige el evento al que quieres invitarle </option>
+                 </select>   
+                 
+             <div class="form-group" style="margin-top: 20px;">
+                <p class="bg-danger err" ng-show="formName.description.$error.minlength">Debe tener mínimo 10 carácteres</p>
+                <p class="bg-danger err" ng-show="formName.description.$error.maxlength">Debe tener máximo 50 carácteres</p>
+                <textarea placeholder="Mensaje" name="description" class="form-control" style="resize: none; height: 100px;" ng-model="message.description" ng-minlength="10"  ng-maxlength="50" required></textarea>
+            </div>
+
+             <button type="submit" ng-click="send()" style="margin-top: 15px;"  ng-disabled="messageForm.$invalid" class="btn btn-warning btn-block"><span class="glyphicon">&#x2709;</span> ENVIAR</button>
+              <p ng-show="err" class="bg-danger">Fallo al enviar el mensaje</p>
+             </form>
+         </div>
+</div>

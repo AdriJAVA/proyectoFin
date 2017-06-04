@@ -8,7 +8,7 @@
 angular.module('webApp')
 
   .config(['$routeProvider','$qProvider',function($routeProvider,$qProvider) {
-    $qProvider.errorOnUnhandledRejections(false);
+    //$qProvider.errorOnUnhandledRejections(false);
 
     $routeProvider
       .when('/login', {
@@ -67,6 +67,14 @@ angular.module('webApp')
       .when('/app/account', {
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl',
+        resolve: {
+            "currentAuth": ["$firebaseAuth", function($firebaseAuth) {
+            return $firebaseAuth().$requireSignIn();
+          }]
+      }})
+      .when('/app/user/:uid', {
+        templateUrl: 'views/user.html',
+        controller: 'UserCtrl',
         resolve: {
             "currentAuth": ["$firebaseAuth", function($firebaseAuth) {
             return $firebaseAuth().$requireSignIn();

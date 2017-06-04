@@ -56,6 +56,8 @@ angular.module('webApp')
         $scope.persons =  Object.keys(event.persons).length;
           if($scope.persons >= event.capacity){
             $scope.fullEvent = true;
+          }else{
+            $scope.fullEvent = false;
           }
         }else{
           $scope.persons = 0;

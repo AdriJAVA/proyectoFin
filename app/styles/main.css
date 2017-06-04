@@ -304,5 +304,48 @@ img {
     border-radius: 6px 0 6px 6px;
 }
 
+@media (max-width: 767px)  /* @grid-float-breakpoint -1 */
+{
+    .navbar-fixed-top
+    {
+    position: relative;
+    top: auto;
+    }
 
+    .margin{
+      margin-top: 30px !important; 
+    }
+}
+.margin{
+  margin-top: 130px;
+}
+.message{
+  width: 100%;
+  background-color: #fcfcfc;
+  border-radius: 3px;
+  margin-top: 5px;
+  padding: 10px;
+}
 
+div.upload {
+    width: 60px;
+    height: 57px;
+    background: url("../images/upload.svg") no-repeat;
+    overflow: hidden;
+    margin: -20px auto;
+    margin-bottom: 0;
+}
+
+.marginImg{
+  margin: 20px auto !important;
+  margin-bottom: 0 !important;
+}
+
+div.upload input {
+    display: block !important;
+    width: 60px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    cursor: pointer;
+}

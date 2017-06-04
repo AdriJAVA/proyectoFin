@@ -11,7 +11,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" href="lib/ng-image-input-with-preview.min.css">
       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -32,7 +32,7 @@
     <!-- Add your site or application content here -->
     <div ng-if="showNav" ng-include src="'views/navbar.html'"></div>
 
-    <div ng-view>
+    <div ng-view  class="margin" > 
 
 
     </div>
@@ -83,8 +83,6 @@ canvas {
         <script src="scripts/controllers/home.js"></script>
         <script src="scripts\controllers\login.js"></script>
         <script src="scripts\controllers/account.js"></script>
-        <script src="scripts/directives/ngShowAuth.js"></script>
-        <script src="scripts/directives/ngHideAuth.js"></script>
         <script src="scripts\routes.js"></script>
         <script src="scripts/directives/map.js"></script>
         <script src="scripts/services/auth.js"></script>
@@ -101,12 +99,14 @@ canvas {
         <script src="scripts/controllers/modals/modalInfoProvince.js"></script>
         <script src="scripts/controllers/modals/modalMyEvents.js"></script>
         <script src="scripts/controllers/modals/modalEditEvent.js"></script>
+        <script src="scripts/controllers/modals/modalSendMessage.js"></script>
         <script src="scripts/controllers/event.js"></script>
         <script src="scripts/controllers/navbar.js"></script>
         <script src="scripts/controllers/notification.js"></script>
         <script src="scripts/controllers/attendee.js"></script>
         <script src="scripts/directives/particles.js"></script>
         <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/user.js"></script>
         <!-- endbuild -->
 </body>
 </html>

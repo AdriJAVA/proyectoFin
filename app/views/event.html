@@ -1,4 +1,4 @@
-<div CLASS="container" style="margin-top: 130px;">
+<div CLASS="container" >
     <div class="row">
                 <div class="col-md-8 col-sm-8 text-center" >
                     <div class="panel panel-default shadow"  style="background-color:#1abc9c;">
@@ -6,7 +6,7 @@
                             <h3 class="panel-title">{{event.name}}</h3>
                         </div>
                         <div class="panel-body">
-                            <img class="img-responsive img-thumbnail" style="max-width: 500px; max-height: 500px;" ng-src="{{event.image}}">
+                            <img class="img-responsive img-thumbnail" ng-src="{{event.image}}">
 
                             <div >
                                 <h5>Descripción:</h5>
@@ -45,7 +45,7 @@
                              <div ng-if="adminEvent">
                                     <h3>ERES EL CREADOR DE ESTE EVENTO</h3>
                              </div>
-                             <div ng-if="fullEvent && unlinkedUser">
+                             <div ng-if="fullEvent">
                                     <h3 style="color: red;">EVENTO LLENO</h3>
                              </div>
             </div>
@@ -57,20 +57,25 @@
             </div>
 
             <div class="col-md-4 col-sm-4" style="margin-top: 20px; " >
+                <div class="row">
                     <div class="panel panel-default shadow">
                         <div class="panel-heading  text-center" >
                             <h3 class="panel-title">ASISTENTES</h3>
                         </div>
-                        <div class="panel-body "  style="max-height: 250px; overflow-y: scroll;" >
-                            <div ng-repeat="attendee in attendees" style="font-size: 15px"> 
-                                <img ng-src="{{attendee.image}}" style="width: 30px; border-radius: 30px;" alt="">
-                                <p style="display: inline; margin-left: 5px;">{{attendee.name}}</p>
+                        <div class="panel-body "  style="max-height: 250px; overflow-y: scroll; padding: 0px;" >
+                            <div ng-repeat="attendee in attendees" style="font-size: 15px; background-color: #f7f8f9; width: 100%; border-bottom: 1px solid black; padding: 5px"> 
+                                <img ng-src="{{attendee.image}}" style="width: 30px; border-radius: 30px;">
+                                <p style="display: inline; margin-left: 5px; ">{{attendee.name}}</p>
+                                <a ng-href="/#!/app/user/{{attendee.$id}}" style="float: right;" >
+                                    <span class="glyphicon glyphicon-plus" style="color: black; ; margin-top: 7px;"></span>
+                                </a>
                             </div>
+                            
                                 
-                            <p ng-if="noAttendees" class="text-center" style="font-size: 15px; color: red;"> 
+                            <p ng-if="noAttendees" class="text-center" style="font-size: 15px; color: red; margin-top: 10px;"> 
                                 NO HAY ASISTENTES
                             </p>
-                             
+                         </div>    
                     </div>
                     </div>
             </div>

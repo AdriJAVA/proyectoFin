@@ -80,9 +80,18 @@ angular.module('webApp')
       return aux;
     }
 
+    var addMessage = function(uid,message){
 
+        var Profileref = Ref.child('users').child(uid).child('messages');
 
-    
+        return Profileref.push(message);
+    }
+  
+    var removeMessage = function(uid,idMessage){
+
+        Ref.child('users/' + uid + '/messages/' + idMessage).remove();
+    }
+
     return{
       addEventCreated: addEventCreated,
       addEvent: addEvent,
@@ -90,7 +99,9 @@ angular.module('webApp')
       checkEventCreated: checkEventCreated,
       getEvents:getEvents,
       getUser: getUser,
-      getUsersByUids: getUsersByUids
+      getUsersByUids: getUsersByUids,
+      addMessage: addMessage,
+      removeMessage:removeMessage
     }
 
 
