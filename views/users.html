@@ -1,0 +1,17 @@
+
+    <h1 style="text-align: center">USUARIOS EN {{province | uppercase}}</h1>
+    <div class="container" style="margin-top: 40px;"> 
+                <div infinite-scroll='loadMore()'>
+                    <div class="col-md-2 col-sm-2 col-xs-4" href="#"  style="text-align: center; cursor: pointer;" ng-repeat="user in users" ng-click="click(user)">
+                        <img class="img-responsive" style="width: 80px; border-radius: 80px; margin: 0 auto;"  ng-src="{{user.image}}"/>
+                        <p style="font-size: 13px;">{{user.name}}</p>
+                    </div>
+                </div>
+            </div>  
+        </div>   
+
+<div class="text-center" ng-if="users.length === 0">
+                    <h3>No hay usuarios en esta provincia</h3>
+    </div>
+
+<div ng-include src="'views/notification.html'"></div>

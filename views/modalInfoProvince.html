@@ -1,0 +1,12 @@
+<div class="modal-content">
+    <div class="modal-body">
+        <h2 class="modal-title text-center">{{name}}</h3>
+        <div style="text-align: center">
+            <h4 ng-cloak>Hay {{events}} eventos</h5>
+            <button type="submit" ng-if="events > 0" ng-click="goProvince()" class="btn customBtn" style="color: white;">Eventos</button>
+            <button type="submit" ng-if="events == 0" ng-click="goAll()" class="btn customBtn" style="color: white;">Eventos en España</button>
+            <button type="submit" ng-click="goUsers()" class="btn btn-warning" style="color: white; margin: 5px;">Usuarios</button>
+            <button type="submit" ng-click="cancel()" class="btn btn-danger">Cancelar</button>
+        </div>
+    </div>
+</div>

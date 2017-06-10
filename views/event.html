@@ -1,0 +1,86 @@
+<div CLASS="container" >
+    <div class="row">
+                <div class="col-md-8 col-sm-8 text-center" >
+                    <div class="panel panel-default shadow"  style="background-color:#1abc9c;">
+                        <div class="panel-heading" >
+                            <h3 class="panel-title">{{event.name}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive img-thumbnail" style="width: 600px; height: 400px;"ng-src="{{event.image}}">
+
+                            <div >
+                                <h5>Descripción:</h5>
+                                <p class="white" style="word-wrap: break-word;">
+                                {{event.description}}
+                                </p>
+                            </div>
+                            <h5>Provincia:</h5>
+                                <p class="white">{{province}}</p>
+
+                            <h5>Lugar:</h5>
+                                <p class="white">{{event.place}}</p>
+                            <h5>Fecha:</h5>
+                            <p class="white"> {{event.date | date:'dd-MM-yyyy'}}</p>  
+                            <h5>Hora:</h5>
+                            <p class="white"> {{hour | date: 'HH:mm'}}</p>     
+                             
+                    </div>
+                    </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 text-center shadow" style="padding: 20px" >
+                            <div >
+                                <h5>PLAZAS</h5>
+                                <p style="word-wrap: break-word;">
+                                    <uib-progressbar class="progress-striped active" max="event.capacity" value="persons" type="warning" ><span style="color: black; white-space:nowrap;"> {{persons}} / {{event.capacity}}</span></uib-progressba>      
+                                </p>
+                            </div>
+                            <div ng-if="unlinkedUser && !adminEvent && !fullEvent" >
+                                <button type="submit" ng-click="joinEvent()" class="btn btn-default">UNIRSE A EVENTO</button>
+                             </div>
+
+                             <div ng-if="!unlinkedUser && !adminEvent">
+                                    <h3>YA ESTAS UNIDO A ESTE EVENTO</h3>
+                             </div>
+                             <div ng-if="adminEvent">
+                                    <h3>ERES EL CREADOR DE ESTE EVENTO</h3>
+                             </div>
+                             <div ng-if="fullEvent">
+                                    <h3 style="color: red;">EVENTO LLENO</h3>
+                             </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 text-center shadow" style="margin-top: 20px; padding: 10px" >
+                    <p>EVENTO CREADO POR</p>
+                    <a ng-href="/#!/app/user/{{event.uid}}">
+                        <img ng-src="{{user.image}}" class="img-responsive imageUser" style="width: 100px; margin: 0 auto;" alt="">
+                        <p style="color: #1abc9c">{{user.name | uppercase}}</p>
+                    </a>
+            </div>
+
+            <div class="col-md-4 col-sm-4" style="margin-top: 20px; " >
+                <div class="row">
+                    <div class="panel panel-default shadow">
+                        <div class="panel-heading  text-center" >
+                            <h3 class="panel-title">ASISTENTES</h3>
+                        </div>
+                        <div class="panel-body "  style="max-height: 250px; overflow-y:scroll;  padding: 0px;" >
+                            <div ng-repeat="attendee in attendees" style="font-size: 15px;  width: 100%; border-top: 1px solid #eff3f7; padding: 5px"> 
+                                <img ng-src="{{attendee.image}}" style="width: 30px; border-radius: 30px;">
+                                <p style="display: inline; margin-left: 5px; ">{{attendee.name}}</p>
+                                <a ng-href="/#!/app/user/{{attendee.$id}}" style="float: right;" >
+                                    <span class="glyphicon glyphicon-plus" style="color: black; ; margin-top: 7px;"></span>
+                                </a>
+                            </div>     
+                            <p ng-if="noAttendees" class="text-center" style="font-size: 15px; color: red; margin-top: 10px;"> 
+                                NO HAY ASISTENTES
+                            </p>
+                         </div>    
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-include src="'views/notification.html'"></div>

@@ -1,0 +1,65 @@
+<div >
+    <h1 style="text-align: center">CREA TUS PROPIOS EVENTOS</h1>
+    <div class="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 newEvent" >
+            <form name="formEvent" class="form-horizontal" novalidate>
+                <div class="form-group text-center">
+                    <img class="img-responsive img-thumbnail" style="width: 250px; height: 200px; margin: -10px;margin-left: calc(50% - 120px); display: block; " ng-show="event.image.src" ng-src="{{event.image.src}}"/>
+                    <span class="error" ng-show="formEvent.myImage.$error.dimensions">
+                        Invalid dimensions! Expecting a landscape image smaller than 1800x400.
+                    </span>
+                    <div class="upload " ng-class="{marginImg: event.image.src }">
+                        <input type="file" class="form-control" name="myImage" image-with-preview ng-file="imageUpload" ng-model="event.image" accept="image/jpeg,image/png" required hidden>
+                    </div>
+                    <p style="font-size: 10px;">Subir imagen </p>
+                    </div>
+                        <br>
+
+                <div class="form-group" style="margin-top: -40px">
+                        <p class="bg-danger err" ng-show="formEvent.name.$error.minlength">Debe tener mínimo 6 carácteres</p>
+                        <p class="bg-danger err" ng-show="formEvent.name.$error.maxlength">Debe tener máximo 25 carácteres</p>
+                        <input type="text" name="name" class="form-control" ng-model="event.name" ng-minlength="6" ng-maxlength="25" placeholder="Nombre "required>
+                </div>
+                
+                <div class="form-group">
+                             <p class="bg-danger err" ng-show="formEvent.description.$error.minlength">Debe tener mínimo 30 carácteres</p>
+                             <p class="bg-danger err" ng-show="formEvent.description.$error.maxlength">Debe tener máximo 200 carácteres</p>
+                            <textarea name="description" class="form-control" style="resize: none; height: 100px;" ng-model="event.description" ng-minlength="30" placeholder="Descripción" ng-maxlength="200"  required></textarea>
+                </div>
+
+                <div class="form-group">
+                             <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="event.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Fecha" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                                <div uib-timepicker ng-model="event.time" style="margin-left: calc(50% - 50px)" show-meridian="ismeridian" required></div>
+                                </p>
+                </div>
+
+                <div class="form-group" style="margin-top: -20px;">
+                        <select style="width: 100%" ng-model="province" ng-options="x.name for x in provinces" required>
+                            <option value="" disabled selected>Provincia</option>
+                        </select>
+                </div>
+                <div class="form-group" >
+                        <p class="bg-danger err" ng-show="formEvent.place.$error.minlength">Debe tener mínimo 10 carácteres</p>
+                        <p class="bg-danger err" ng-show="formEvent.place.$error.maxlength">Debe tener máximo 25 carácteres</p>
+                        <input type="text" name="place" class="form-control" ng-model="event.place" ng-minlength="10" ng-maxlength="25" placeholder="Lugar" required>   
+                </div>
+                <div class="form-group">
+                        <p class="bg-danger err" ng-show="formEvent.capacity.$error.max">Número introducido demasiado grande</p>
+                        <input type="number" name="capacity" class="form-control" ng-model="event.capacity" min="1" max="10000" placeholder="Plazas" required>   
+                </div>
+                <div  ng-if="show">
+                    <uib-progressbar class="progress-striped active" max="100" value="progress" type="warning" ><span style="color: black; white-space:nowrap;"> {{progress}} / 100</span></uib-progressba>      
+                </div>
+                
+                <p ng-show="err" class="bg-danger">Failed to create event</p>
+                <div class="form-group" style="text-align: center;">        
+                    <button type="submit" style="color: white;" class="btn customBtn" ng-click="createEvent()" ng-disabled="formEvent.$invalid">CREAR EVENTO</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
